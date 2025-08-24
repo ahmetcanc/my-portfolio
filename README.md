@@ -1,11 +1,7 @@
-# Zafer Duran - Frontend Developer Portfolio
-
-A stunning, dark-themed portfolio website showcasing Zafer Duran's skills as a frontend developer. Built with modern web technologies and featuring a futuristic design with smooth animations and responsive layout.
 
 ## 🚀 Features
 
 - **Dark Futuristic Design**: Deep purple to black gradient background with glowing highlights
-- **Fullscreen Intro Animation**: Cinematic intro with "Zafer.dev" branding and smooth transitions
 - **Smooth Animations**: Framer Motion powered animations for enhanced user experience
 - **Responsive Layout**: Mobile-first design that works perfectly on all devices
 - **Modern Typography**: Inter and Space Grotesk fonts for a professional look
@@ -19,7 +15,6 @@ The portfolio features a stunning fullscreen intro animation that runs only once
 
 ### Animation Flow:
 1. **Black Screen**: Starts with a full black background
-2. **Logo Reveal**: "Zafer.dev" text fades in with scale-up animation (0.9 → 1.2 → 1.0)
 3. **Glow Effects**: Subtle pulsing glow and neon flicker effects
 4. **Background Transition**: Smooth gradient transition from black to dark purple/navy
 5. **Particle Effects**: Floating particles for added visual appeal
@@ -175,13 +170,3 @@ The app can be deployed to any platform that supports Next.js:
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🤝 Contact
-
-- **Name**: Zafer Duran
-- **Role**: Frontend Developer
-- **Specialties**: React, Next.js, TypeScript
-- **Portfolio**: [zafer.dev](https://zafer.dev)
-
----
-
-Built with ❤️ by Zafer Duran
