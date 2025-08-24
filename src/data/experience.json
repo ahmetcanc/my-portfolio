@@ -1,0 +1,148 @@
+{
+  "tr": [
+    {
+      "company": "Primod",
+      "location": "Düzce, Türkiye",
+      "role": "Backend Developer",
+      "period": "Haziran 2023 – Günümüz",
+      "description": "Cloud Security CNAPP (Cloud-Native Application Protection Platform) geliştirdim; backend tarafında Golang ve PostgreSQL kullandım.",
+      "highlights": [
+  "Cloud Workload Protection uygulaması geliştirme",
+  "Backend geliştirme: Golang ve PostgreSQL ile verimli çözümler",
+  "Modern web teknolojileri ile güvenli uygulamalar",
+  "AWS, Azure ve Kubernetes deneyimi"
+]
+
+    },
+        {
+  "company": "Freelance",
+  "location": "Remote",
+  "role": "Software Developer",
+  "period": "2020 – Günümüz",
+  "description": "Çeşitli projelerde backend ve fullstack geliştirme, bulut tabanlı güvenlik çözümleri ve entegrasyon hizmetleri. Golang, C# .NET Framework, PostgreSQL, MSSQL, HTML, CSS ve JavaScript gibi teknolojilerle ölçeklenebilir ve güvenli uygulamalar geliştirme. AWS, Azure ve Kubernetes altyapılarında bulut çözümleri tasarlama.",
+  "highlights": [
+    "Golang ve C# .NET Framework ile backend geliştirme",
+    "PostgreSQL ve MSSQL veritabanı yönetimi",
+    "HTML, CSS ve JavaScript ile web arayüzleri geliştirme",
+    "AWS, Azure ve Kubernetes üzerinde bulut tabanlı çözümler",
+    "Cloud Security projeleri ve entegrasyon geliştirme",
+    "Teknik danışmanlık ve özel yazılım çözümleri"
+  ]
+},
+        {
+  "company": "BEEKOD",
+  "location": "Düzce, Türkiye",
+  "role": "FullStack Developer",
+  "period": "Ocak 2023  - Haziran 2023",
+  "description": "C# .NET Framework, MSSQL ve modern web teknolojileri (HTML, CSS, JavaScript) kullanarak e-ticaret ve entegrasyon çözümleri geliştirme. Varolan pazaryerlerini tek noktadan yöneten entegrasyon programının geliştirilmesi ve bakımı.",
+  "highlights": [
+    "C# .NET Framework ile backend geliştirme",
+    "MSSQL veritabanı tasarımı ve optimizasyonu",
+    "HTML, CSS, JavaScript ile web arayüzleri geliştirme",
+    "E-ticaret siteleri için entegrasyon çözümleri",
+    "Pazaryeri entegrasyon programının geliştirilmesi ve bakımı"
+  ]
+},
+{
+  "company": "Düzce Gençlik ve Spor İl Müdürlüğü",
+  "location": "Düzce, Türkiye",
+  "role": "Bilgi İşlem Stajyeri",
+  "period": "2022 Bahar Dönemi",
+  "description": "Bilgisayar donanımları, ağ altyapısı ve kullanıcı desteği üzerine çalışmalar. Kurum içi sistemlerin bakım, onarım ve teknik destek süreçlerinde görev alma.",
+  "highlights": [
+    "Bilgisayar donanım kurulumu ve bakımı",
+    "Ağ cihazları (switch, modem, router) ile çalışma",
+    "Yazıcı ve çevre birimleri kurulumu",
+    "Kullanıcılara teknik destek sağlama",
+    "Donanım arızalarının tespiti ve çözümü"
+  ]
+},
+{
+  "company": "Open Yazılım",
+  "location": "Düzce, Türkiye",
+  "role": "FullStack Developer Stajyeri",
+  "period": "2021 (3 ay)",
+  "description": "C# .NET Framework ve MSSQL kullanarak sigorta uygulaması geliştirme ve mevcut modüllerin bakımını yapma. Poliçe yönetimi, müşteri bilgileri ve raporlama süreçlerini dijitalleştirme üzerine çalışmalar.",
+  "highlights": [
+    "C# .NET Framework ile sigorta uygulaması geliştirme",
+    "MSSQL veritabanı tasarımı ve sorgu optimizasyonu",
+    "Poliçe yönetimi ve müşteri kayıt modülleri geliştirme",
+    "Sigorta süreçleri için raporlama çözümleri",
+    "Mevcut modüllerin bakım ve iyileştirmeleri"
+  ]
+}
+  ],
+  "en": [
+    {
+  "company": "Primod",
+  "location": "Düzce, Türkiye",
+  "role": "Backend Developer",
+  "period": "June 2023 – Present",
+  "description": "Developed a Cloud Security CNAPP (Cloud-Native Application Protection Platform); utilized Golang and PostgreSQL on the backend side.",
+  "highlights": [
+    "Developing Cloud Workload Protection application",
+    "Backend development: efficient solutions with Golang and PostgreSQL",
+    "Secure applications with modern web technologies",
+    "Experience with AWS, Azure, and Kubernetes"
+  ]
+},
+    {
+  "company": "Freelance",
+  "location": "Remote",
+  "role": "Software Developer",
+  "period": "2020 – Present",
+  "description": "Backend and fullstack development in various projects, cloud-based security solutions, and integration services. Developing scalable and secure applications with technologies such as Golang, C# .NET Framework, PostgreSQL, MSSQL, HTML, CSS, and JavaScript. Designing cloud solutions on AWS, Azure, and Kubernetes infrastructures.",
+  "highlights": [
+    "Backend development with Golang and C# .NET Framework",
+    "PostgreSQL and MSSQL database management",
+    "Developing web interfaces with HTML, CSS, and JavaScript",
+    "Cloud-based solutions on AWS, Azure, and Kubernetes",
+    "Cloud Security projects and integration development",
+    "Technical consultancy and custom software solutions"
+  ]
+},
+{
+  "company": "BEEKOD",
+  "location": "Düzce, Türkiye",
+  "role": "FullStack Developer",
+  "period": "January 2023 - June 2023",
+  "description": "Developing e-commerce and integration solutions using C# .NET Framework, MSSQL, and modern web technologies (HTML, CSS, JavaScript). Contributing to the development and maintenance of an integration program that manages existing marketplaces from a single platform.",
+  "highlights": [
+    "Backend development with C# .NET Framework",
+    "MSSQL database design and optimization",
+    "Developing web interfaces with HTML, CSS, JavaScript",
+    "Integration solutions for e-commerce websites",
+    "Development and maintenance of marketplace integration program"
+  ]
+},
+{
+  "company": "Düzce Provincial Directorate of Youth and Sports",
+  "location": "Düzce, Türkiye",
+  "role": "IT Intern",
+  "period": "Spring 2022",
+  "description": "Working on computer hardware, network infrastructure, and user support. Taking part in maintenance, repair, and technical support processes of in-house systems.",
+  "highlights": [
+    "Computer hardware installation and maintenance",
+    "Working with network devices (switch, modem, router)",
+    "Printer and peripheral device setup",
+    "Providing technical support to users",
+    "Troubleshooting and resolving hardware failures"
+  ]
+},
+{
+  "company": "Open Yazılım",
+  "location": "Düzce, Türkiye",
+  "role": "FullStack Developer Intern",
+  "period": "2021 (3 months)",
+  "description": "Developing an insurance application using C# .NET Framework and MSSQL, as well as maintaining existing modules. Working on digitalizing policy management, customer information, and reporting processes.",
+  "highlights": [
+    "Developing an insurance application with C# .NET Framework",
+    "MSSQL database design and query optimization",
+    "Developing policy management and customer record modules",
+    "Reporting solutions for insurance processes",
+    "Maintenance and improvements of existing modules"
+  ]
+}
+
+  ]
+}

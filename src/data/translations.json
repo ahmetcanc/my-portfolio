@@ -1,0 +1,93 @@
+{
+  "tr": {
+    "nav": {
+      "home": "Ana Sayfa",
+      "hero": "Ana Sayfa",
+      "about": "Hakkımda",
+      "tech": "Teknoloji Yığını",
+      "projects": "Projeler",
+      "experience": "Deneyim",
+      "hireMe": "İşe Al"
+    },
+    "hero": {
+      "title": "Ahmet Can Ceylan",
+      "subtitle": "Backend Developer",
+      "tagline": "Düşün. Kodla. Yarat.",
+      "description": "Backend odaklı çözümler geliştiriyor, Cloud Security ve bulut teknolojileri (AWS, Azure, Kubernetes) ile güvenli sistemler tasarlıyorum. Golang, C#, .NET, PostgreSQL ve modern web teknolojilerini kullanıyorum.",
+      "viewProjects": "Projeleri Görüntüle",
+      "hireMe": "İşe Al"
+    },
+    "about": {
+      "title": "Hakkımda",
+      "description1": "Yazılım geliştirme alanında 5 yıldır çalışıyorum ve son 3 yıldır sektörde Golang ile backend geliştirme yapıyorum. Bir Backend Developer olarak ölçeklenebilir ve yüksek performanslı sistemler geliştirmeye odaklanıyorum; backend teknolojileri, veritabanı yönetimi ve bulut çözümleri ile ilgileniyorum. Düzce Üniversitesi Yönetim Bilişim Sistemleri bölümünden mezun oldum.\nGolang kullanarak backend uygulamaları geliştiriyorum ve PostgreSQL yönetimi ve SQL konusunda deneyime sahibim. Ayrıca, çoklu model destekleyen NoSQL veritabanı ArangoDB ile çalıştım.\nBulut bilişim ve DevOps alanında uzmanlığım bulunuyor. AWS hizmetlerini aktif olarak kullanıyor ve Azure platformu hakkında bilgi sahibiyim. Docker ve Kubernetes konusunda yetkinim; altyapı yönetimi ve ölçeklenebilir uygulama geliştirme üzerine çalışıyorum.\nAPI geliştirmede RESTful API'ler ve gRPC kullanarak güvenilir ve verimli mikroservis mimarileri tasarlıyorum. Kimlik doğrulama ve yetkilendirme süreçlerini yönetiyor ve erişim kontrol mekanizmaları için RBAC (Role-Based Access Control) modellerini uyguluyorum.\nAyrıca Jira, Slack, Git ve Confluence gibi iş birliği ve proje yönetim araçlarını etkin şekilde kullanıyorum.\ngRPC, Kafka ve Protobuf teknolojileri hakkında bilgi sahibiyim ve bu teknolojileri kullanan projelerde yer aldım.\nYeni teknolojilere hızlı adapte olan, sürekli öğrenen ve kendini geliştirmeye odaklı bir yazılım geliştiricisiyim.",
+      "description2": "Prime Modality'de Cloud Security CNAPP uygulamasının geliştirilme sürecinde yer aldım; backend geliştirme tarafında Golang ve PostgreSQL üzerinde çalıştım. AWS, Azure ve Kubernetes gibi bulut teknolojilerinde kendimi sürekli güncel tutuyorum.",
+      "yearsExperience": "Yıl Deneyim",
+      "techStackMastery": "Teknoloji Uzmanlığı",
+      "gpaScore": "Tamamlanan Proje"
+    },
+    "techStack": {
+      "title": "Teknoloji Yığını"
+    },
+    "projects": {
+      "title": "Öne Çıkan Projeler"
+    },
+    "experience": {
+      "title": "Deneyim"
+    },
+    "footer": {
+      "copyright": "© 2024 Ahmet Can Ceylan. Tüm hakları saklıdır.",
+  "description": "Backend odaklı çözümler geliştiriyor, Cloud Security projeleri başta olmak üzere AWS, Azure ve Kubernetes altyapılarında ölçeklenebilir ve güvenli sistemler tasarlıyorum. Golang, PostgreSQL ve modern backend teknolojileri ile her türlü dijital çözümü hayata geçiriyorum.",
+      "quickLinks": "Hızlı Linkler",
+      "connect": "Bağlantı",
+      "email": "ahmetcanceylann81@gmail.com"
+    }
+  },
+  "en": {
+    "nav": {
+      "home": "Home",
+      "hero": "Home",
+      "about": "About",
+      "tech": "Tech Stack",
+      "projects": "Projects",
+      "hobbies": "Hobbies",
+      "experience": "Experience",
+      "hireMe": "Hire Me"
+    },
+    "hero": {
+      "title": "Ahmet Can Ceylan",
+      "subtitle": "Backend Developer",
+      "tagline": "Think. Code. Create.",
+      "description": "I develop backend-focused solutions, designing secure and scalable systems for Cloud Security projects and cloud technologies (AWS, Azure, Kubernetes). I use Golang, C#, .NET, PostgreSQL, and modern backend technologies.",
+      "viewProjects": "View Projects",
+      "hireMe": "Hire Me"
+    },
+    "about": {
+      "title": "About Me",
+      "description1": "I have been involved in software development for 5 years, and have been working with Golang for backend development in the industry for the last 3 years. As a Backend Developer, I focus on developing scalable and high-performance systems, working with backend technologies, database management, and cloud solutions. I hold a degree in Management Information Systems from Düzce University.\nI develop backend applications using Golang and have experience in PostgreSQL and SQL management. Additionally, I have experience with ArangoDB, a multi-model NoSQL database.\nI have expertise in cloud computing and DevOps. I actively use AWS services and have knowledge of the Azure platform. I am proficient in Docker and Kubernetes, specializing in infrastructure management and scalable application development.\nIn API development, I design reliable and efficient microservice architectures using RESTful APIs and gRPC. I manage authentication and authorization processes and implement RBAC (Role-Based Access Control) models for access control mechanisms.\nAdditionally, I effectively use Jira, Slack, Git, and Confluence as collaboration and project management tools.\nI also have knowledge of gRPC, Kafka, and Protobuf technologies and have worked on projects utilizing these technologies.\nI am a software developer who quickly adapts to new technologies, continuously learns, and is committed to self-improvement.",
+      "description2": "I participated in developing the Cloud Security CNAPP application at Prime Modality, focusing on backend development with Golang and PostgreSQL. I continuously keep myself updated on cloud technologies such as AWS, Azure, and Kubernetes.",
+      "yearsExperience": "Years Experience",
+      "techStackMastery": "Tech Expertise",
+      "gpaScore": "Completed Project"
+        },
+    "techStack": {
+      "title": "Tech Stack"
+    },
+    "hobbies": {
+      "title": "My Hobbies",
+      "subtitle": "I love constantly acquiring new hobbies because it allows me to improve myself and make my life more colorful and enjoyable. Trying new things inspires me, and each time I feel as if I've stepped into a different world."
+    },
+    "projects": {
+      "title": "Featured Projects"
+    },
+    "experience": {
+      "title": "Experience"
+    },
+    "footer": {
+      "copyright": "© 2025 Ahmet Can Ceylan. All rights reserved.",
+      "description": "I develop backend-focused solutions, designing secure and scalable systems for Cloud Security projects and cloud technologies (AWS, Azure, Kubernetes). I use Golang, C#, .NET, PostgreSQL, and modern backend technologies.",
+      "quickLinks": "Quick Links",
+      "connect": "Connect",
+      "email": "ahmetcanceylann81@gmail.com"
+    }
+  }
+}

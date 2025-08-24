@@ -1,0 +1,17 @@
+[
+  { "name": "Golang", "icon": "logos:go", "color": "#00ADD8" },
+{ "name": "SQL", "icon": "mdi:database", "color": "#336791" },
+  { "name": "Linux", "icon": "logos:linux-tux", "color": "#000000" },
+  { "name": "ArangoDB", "icon": "logos:arangodb", "color": "#2F9C95" },
+  { "name": "HTML", "icon": "logos:html-5", "color": "#E34F26" },
+  { "name": "CSS", "icon": "logos:css-3", "color": "#1572B6" },
+  { "name": "C#", "icon": "vscode-icons:file-type-csharp", "color": "#239120" },
+  { "name": ".NET", "icon": "logos:dotnet", "color": "#512BD4" },
+  { "name": "Docker", "icon": "logos:docker-icon", "color": "#2496ED" },
+  { "name": "Kubernetes", "icon": "logos:kubernetes", "color": "#326CE5" },
+  { "name": "PostgreSQL", "icon": "logos:postgresql", "color": "#336791" },
+  { "name": "MongoDB", "icon": "logos:mongodb-icon", "color": "#47A248" },
+  { "name": "AWS", "icon": "logos:aws", "color": "#FF9900" },
+  { "name": "Azure", "icon": "logos:microsoft-azure", "color": "#0078D4" },
+  { "name": "Git", "icon": "logos:git-icon", "color": "#F05032" }
+]

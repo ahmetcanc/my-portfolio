@@ -1,27 +1,35 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Primary Colors - Blue Theme */
+  --primary-color: #3b82f6;   /* Tailwind Blue-500 */
+  --primary-dark: #2563eb;    /* Tailwind Blue-600 */
+  --primary-light: #60a5fa;   /* Tailwind Blue-400 */
+  
+  /* Secondary Colors */
+  --secondary-color: #0ea5e9;   /* Cyan-500 */
+  --secondary-dark: #0284c7;    /* Cyan-600 */
+  --secondary-light: #38bdf8;   /* Cyan-400 */
+  
+  /* Accent Colors */
+  --accent-color: #22d3ee;    /* Cyan-400/300 vibe */
+  --accent-dark: #06b6d4;     /* Cyan-500 */
+  
+  /* Background Colors */
+  --bg-primary: #0f172a;      /* Slate-900 */
+  --bg-secondary: #1e293b;    /* Slate-800 */
+  --bg-tertiary: #334155;     /* Slate-700 */
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  /* Border Colors */
+  --border-primary: rgba(59, 130, 246, 0.3);
+  --border-secondary: rgba(255, 255, 255, 0.1);
+  
+  /* Shadow Colors */
+  --shadow-primary: rgba(59, 130, 246, 0.3);
+  --shadow-secondary: rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -30,13 +38,75 @@ body {
   margin: 0;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Exo 2', 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1b26 0%, #24283b 50%, #292e42 100%);
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* Retro Font Styles */
+h1, h2, h3, .logo, .title {
+  font-family: 'Orbitron', 'Exo 2', monospace;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.navbar, .nav-link {
+  font-family: 'Rajdhani', 'Exo 2', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+.code, .monospace {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.3); /* Mavi şeffaf */
+  color: #ffffff;
+}
+
+/* Focus styles */
+*:focus {
+  outline: 2px solid #4ecdc4;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

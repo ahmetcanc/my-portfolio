@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Ahsen3D Website",
+  "description": "Responsive portfolio website built with HTML, CSS, and Golang, featuring PostgreSQL integration for dynamic data management and smooth user experience.",
+    "tech": ["Golang", "PostgreSQL", "Gin Framework", "HTML", "CSS Modules"],
+    "image": "/ahsen3d.png",
+    "github": "https://github.com/ahmetcanc",
+    "demo": "https://canceylan.dev"
+  },
+    {
+    "title": "EFE Forklift Website",
+    "description": "Modern responsive Website built with JavaScript, HTML and CSS.",
+    "tech": [".Net MVC", "MsSQL", "JavaScript", "HTML", "CSS Modules"],
+    "image": "/efeforklift.png",
+    "github": "https://github.com/ahmetcanc",
+    "demo": "https://canceylan.dev"
+  },
+      {
+    "title": "Market App",
+    "description": "Modern responsive portfolio built with .Net MVC, MsSQL, JavaScript, HTML and CSS.",
+    "tech": [".Net MVC", "MsSQL", "JavaScript", "HTML", "CSS Modules"],
+    "image": "/marketapp.png",
+    "github": "https://github.com/ahmetcanc",
+    "demo": "https://canceylan.dev"
+  }
+] 
