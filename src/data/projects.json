@@ -22,5 +22,13 @@
     "image": "/marketapp.png",
     "github": "https://github.com/ahmetcanc",
     "demo": "https://canceylan.dev"
+  },
+      {
+    "title": "TaskMan",
+    "description": "Production-ready Task Manager API built with Go, Redis, PostgreSQL, Docker, and JWT authentication.",
+    "tech": ["GoLang", "Redis", "PostgreSQL", "Docker", "Docker Compose"],
+    "image": "/taskman.png",
+    "github": "https://github.com/ahmetcanc",
+    "demo": "https://canceylan.dev"
   }
 ] 
