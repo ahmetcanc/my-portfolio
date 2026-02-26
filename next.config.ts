@@ -8,5 +8,5 @@ const nextConfig: NextConfig = {
     unoptimized: true,   // GitHub Pages'da resimlerin hata vermemesi için gereklidir
   },
 };
-
+ 
 export default nextConfig;
