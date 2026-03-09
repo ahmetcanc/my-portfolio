@@ -28,7 +28,15 @@
     "description": "Production-ready Task Manager API built with Go, Redis, PostgreSQL, Docker, and JWT authentication.",
     "tech": ["GoLang", "Redis", "PostgreSQL", "Docker", "Docker Compose"],
     "image": "/taskman.png",
-    "github": "https://github.com/ahmetcanc",
+    "github": "https://github.com/ahmetcanc/taskman",
+    "demo": "https://canceylan.dev"
+  },
+      {
+    "title": "Notify-One",
+    "description": "Scalable, event-driven notification engine designed for high-throughput delivery across SMS, Email, and Push channels. Built with Go, PostgreSQL, and Redis, featuring priority-based processing, distributed rate limiting, and idempotency.",
+    "tech": ["GoLang", "Redis", "PostgreSQL", "Docker", "Docker Compose", "Swagger", ""],
+    "image": "/swagger-req.png",
+    "github": "https://github.com/ahmetcanc/notify-one",
     "demo": "https://canceylan.dev"
   }
 ] 
