@@ -26,22 +26,22 @@ type BlogPost struct {
 	Content LocalizedString `json:"content"`
 }
 
-type GroqRequest struct {
-	Model          string        `json:"model"`
-	Messages       []GroqMessage `json:"messages"`
-	ResponseFormat *GroqFormat   `json:"response_format,omitempty"`
+type Request struct {
+	Model          string    `json:"model"`
+	Messages       []Message `json:"messages"`
+	ResponseFormat *Format   `json:"response_format,omitempty"`
 }
 
-type GroqMessage struct {
+type Message struct {
 	Role    string `json:"role"`
 	Content string `json:"content"`
 }
 
-type GroqFormat struct {
+type Format struct {
 	Type string `json:"type"`
 }
 
-type GroqResponse struct {
+type Response struct {
 	Choices []struct {
 		Message struct {
 			Content string `json:"content"`
@@ -84,7 +84,7 @@ func main() {
 
 	reqBody := Request{
 		Model: "llama3-70b-8192",
-		Messages: []GroqMessage{
+		Messages: []Message{
 			{Role: "user", Content: prompt},
 		},
 		ResponseFormat: &Format{Type: "json_object"},
