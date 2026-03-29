@@ -84,13 +84,8 @@ func main() {
 
 	reqBody := Request{
 		Model: "llama3-70b-8192",
-<<<<<<< Updated upstream
-		Messages: []Message{
-			{Role: "system", Content: prompt},
-=======
 		Messages: []GroqMessage{
 			{Role: "user", Content: prompt},
->>>>>>> Stashed changes
 		},
 		ResponseFormat: &Format{Type: "json_object"},
 	}
