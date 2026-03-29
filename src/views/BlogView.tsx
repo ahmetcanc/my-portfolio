@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
