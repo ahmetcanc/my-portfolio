@@ -1,16 +1,15 @@
 package main
 
 import (
-	"context"
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 	"time"
-
-	"github.com/google/generative-ai-go/genai"
-	"google.golang.org/api/option"
 )
 
 type LocalizedString struct {
@@ -27,32 +26,45 @@ type BlogPost struct {
 	Content LocalizedString `json:"content"`
 }
 
+// Groq API için gerekli veri yapıları
+type GroqRequest struct {
+	Model          string        `json:"model"`
+	Messages       []GroqMessage `json:"messages"`
+	ResponseFormat *GroqFormat   `json:"response_format,omitempty"`
+}
+
+type GroqMessage struct {
+	Role    string `json:"role"`
+	Content string `json:"content"`
+}
+
+type GroqFormat struct {
+	Type string `json:"type"`
+}
+
+type GroqResponse struct {
+	Choices []struct {
+		Message struct {
+			Content string `json:"content"`
+		} `json:"message"`
+	} `json:"choices"`
+}
+
 func main() {
-	apiKey := os.Getenv("GEMINI_API_KEY")
+	apiKey := os.Getenv("GROQ_API_KEY")
 	if apiKey == "" {
-		log.Fatal("ERROR: GEMINI_API_KEY environment variable not set!")
+		log.Fatal("ERROR: GROQ_API_KEY environment variable not set!")
 	}
-
-	ctx := context.Background()
-	client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
-	if err != nil {
-		log.Fatalf("The client could not be created: %v", err)
-	}
-	defer client.Close()
-
-	model := client.GenerativeModel("gemini-2.0-flash")
-	model.ResponseMIMEType = "application/json"
 
 	prompt := `You are a Senior Backend Engineer, Golang Expert, and Tech Blogger.
-	Your task is to identify and analyze the most significant developments in the Backend, Golang, and Developer AI ecosystem from the recent period (past 7 days).
-	This could be a new Go package, a framework update, a new AI model release, or a shift in backend architecture trends.
+	Your task is to identify and analyze the most significant developments in the Backend, Golang, and Developer AI ecosystem from the past 7 days.
 	
 	Choose 1 or 2 of the most impactful topics. Write an engaging, insightful blog post where you:
 	1. Report the actual news, tool, or development.
-	2. Provide your expert commentary and analysis on how this affects backend developers, its pros/cons, and how it changes the way we write Go code.
+	2. Provide your expert commentary and analysis on how this affects backend developers.
 	
-	You must output the result STRICTLY as a valid JSON object. Do not include any introductory or concluding text outside the JSON.
-	The content must be provided in both Turkish ("tr") and English ("en"). Use Markdown formatting inside the "content" fields for readability (e.g., bold text, lists, or code blocks).
+	You must output the result STRICTLY as a valid JSON object. Do not include any introductory text.
+	The content must be provided in both Turkish ("tr") and English ("en"). Use Markdown formatting inside the "content" fields.
 	
 	JSON Schema:
 	{
@@ -71,25 +83,62 @@ func main() {
 		}
 	}`
 
-	fmt.Println("Waiting for AI Response...")
-	resp, err := model.GenerateContent(ctx, genai.Text(prompt))
+	reqBody := GroqRequest{
+		Model: "llama3-70b-8192",
+		Messages: []GroqMessage{
+			{Role: "system", Content: prompt},
+		},
+		ResponseFormat: &GroqFormat{Type: "json_object"},
+	}
+
+	jsonData, err := json.Marshal(reqBody)
 	if err != nil {
-		log.Fatalf("Error generating content: %v", err)
+		log.Fatalf("Request body marshal error: %v", err)
 	}
 
-	if len(resp.Candidates) == 0 || len(resp.Candidates[0].Content.Parts) == 0 {
-		log.Fatal("AI response is empty.")
+	req, err := http.NewRequest("POST", "https://api.groq.com/openai/v1/chat/completions", bytes.NewBuffer(jsonData))
+	if err != nil {
+		log.Fatalf("Request creation error: %v", err)
 	}
 
-	rawResponse := fmt.Sprintf("%v", resp.Candidates[0].Content.Parts[0])
+	req.Header.Set("Authorization", "Bearer "+apiKey)
+	req.Header.Set("Content-Type", "application/json")
 
-	rawResponse = strings.TrimPrefix(rawResponse, "```json\n")
-	rawResponse = strings.TrimSuffix(rawResponse, "\n```")
+	client := &http.Client{Timeout: 30 * time.Second}
+
+	fmt.Println("Waiting for Groq (Llama 3) AI Response...")
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatalf("API request failed: %v", err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalf("Failed to read response body: %v", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		log.Fatalf("API Error: %d - %s", resp.StatusCode, string(bodyBytes))
+	}
+
+	var groqResp GroqResponse
+	if err := json.Unmarshal(bodyBytes, &groqResp); err != nil {
+		log.Fatalf("Failed to parse Groq response: %v\nRaw: %s", err, string(bodyBytes))
+	}
+
+	if len(groqResp.Choices) == 0 {
+		log.Fatal("AI returned empty response.")
+	}
+
+	rawContent := groqResp.Choices[0].Message.Content
+	rawContent = strings.TrimPrefix(rawContent, "```json\n")
+	rawContent = strings.TrimSuffix(rawContent, "\n```")
 
 	var newPost BlogPost
-	err = json.Unmarshal([]byte(rawResponse), &newPost)
+	err = json.Unmarshal([]byte(rawContent), &newPost)
 	if err != nil {
-		log.Fatalf("JSON Parse Error: %v\nRaw Response: %s", err, rawResponse)
+		log.Fatalf("JSON Parse Error on AI output: %v\nRaw Content: %s", err, rawContent)
 	}
 
 	newPost.ID = fmt.Sprintf("%d", time.Now().Unix())

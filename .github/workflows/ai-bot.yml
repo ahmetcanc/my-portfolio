@@ -2,8 +2,8 @@ name: AI Blog Generator
 
 on:
   schedule:
-    - cron: '0 9 * * 6' # Saturday at 9 AM
-  workflow_dispatch:    # Manually trigger
+    - cron: '0 9 * * 6'
+  workflow_dispatch:
 
 jobs:
   write-blog:
@@ -22,7 +22,7 @@ jobs:
 
       - name: AI Blog Generator
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # Get Api Key from Secrets
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           cd bot
           go run main.go
