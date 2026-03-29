@@ -36,7 +36,7 @@ export default function BlogView({ t, language }: BlogViewProps) {
     },
   };
 
-  const itemVariants = {
+const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
