@@ -26,7 +26,6 @@ type BlogPost struct {
 	Content LocalizedString `json:"content"`
 }
 
-// Groq API için gerekli veri yapıları
 type GroqRequest struct {
 	Model          string        `json:"model"`
 	Messages       []GroqMessage `json:"messages"`
@@ -51,9 +50,9 @@ type GroqResponse struct {
 }
 
 func main() {
-	apiKey := os.Getenv("GROQ_API_KEY")
+	apiKey := os.Getenv("GEMINI_API_KEY")
 	if apiKey == "" {
-		log.Fatal("ERROR: GROQ_API_KEY environment variable not set!")
+		log.Fatal("ERROR: GEMINI_API_KEY environment variable not set!")
 	}
 
 	prompt := `You are a Senior Backend Engineer, Golang Expert, and Tech Blogger.
@@ -83,12 +82,12 @@ func main() {
 		}
 	}`
 
-	reqBody := GroqRequest{
+	reqBody := Request{
 		Model: "llama3-70b-8192",
-		Messages: []GroqMessage{
+		Messages: []Message{
 			{Role: "system", Content: prompt},
 		},
-		ResponseFormat: &GroqFormat{Type: "json_object"},
+		ResponseFormat: &Format{Type: "json_object"},
 	}
 
 	jsonData, err := json.Marshal(reqBody)
@@ -96,7 +95,7 @@ func main() {
 		log.Fatalf("Request body marshal error: %v", err)
 	}
 
-	req, err := http.NewRequest("POST", "https://api.groq.com/openai/v1/chat/completions", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", "https://api..com/openai/v1/chat/completions", bytes.NewBuffer(jsonData))
 	if err != nil {
 		log.Fatalf("Request creation error: %v", err)
 	}
@@ -106,7 +105,7 @@ func main() {
 
 	client := &http.Client{Timeout: 30 * time.Second}
 
-	fmt.Println("Waiting for Groq (Llama 3) AI Response...")
+	fmt.Println("Waiting for  (Llama 3) AI Response...")
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatalf("API request failed: %v", err)
@@ -122,16 +121,16 @@ func main() {
 		log.Fatalf("API Error: %d - %s", resp.StatusCode, string(bodyBytes))
 	}
 
-	var groqResp GroqResponse
-	if err := json.Unmarshal(bodyBytes, &groqResp); err != nil {
-		log.Fatalf("Failed to parse Groq response: %v\nRaw: %s", err, string(bodyBytes))
+	var Resp Response
+	if err := json.Unmarshal(bodyBytes, &Resp); err != nil {
+		log.Fatalf("Failed to parse  response: %v\nRaw: %s", err, string(bodyBytes))
 	}
 
-	if len(groqResp.Choices) == 0 {
+	if len(Resp.Choices) == 0 {
 		log.Fatal("AI returned empty response.")
 	}
 
-	rawContent := groqResp.Choices[0].Message.Content
+	rawContent := Resp.Choices[0].Message.Content
 	rawContent = strings.TrimPrefix(rawContent, "```json\n")
 	rawContent = strings.TrimSuffix(rawContent, "\n```")
 
