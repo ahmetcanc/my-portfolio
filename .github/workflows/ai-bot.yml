@@ -1,0 +1,36 @@
+name: AI Blog Generator
+
+on:
+  schedule:
+    - cron: '0 9 * * 6' # Saturday at 9 AM
+  workflow_dispatch:    # Manually trigger
+
+jobs:
+  write-blog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Necessary to push changes
+
+    steps:
+      - name: Pull Repository (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: AI Blog Generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # Get Api Key from Secrets
+        run: |
+          cd bot
+          go run main.go
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/blog.json
+          git commit -m "feat(blog): Added new blog from AI" || echo "No changes to commit"
+          git push

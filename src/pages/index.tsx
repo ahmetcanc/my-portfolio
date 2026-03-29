@@ -17,6 +17,7 @@ import ExperienceView from "../views/ExperienceView";
 import FooterView from "../views/FooterView";
 import techStackData from "../data/techStack.json";
 import projectsData from "../data/projects.json";
+import BlogView from "../views/BlogView";
 import experienceData from "../data/experience.json";
 
 const techStack = techStackData;
@@ -137,6 +138,7 @@ export default function Home() {
               <a href="#about">{t.nav.about}</a>
               <a href="#projects">{t.nav.projects}</a>
               <a href="#experience">{t.nav.experience}</a>
+              <a href="#blog">Blog</a>
               
               {/* Desktop Language Toggle */}
               <div className={styles.languageToggle} ref={languageToggleRef}>
@@ -203,6 +205,7 @@ export default function Home() {
               <a href="#about">{t.nav.about}</a>
               <a href="#projects">{t.nav.projects}</a>
               <a href="#experience">{t.nav.experience}</a>
+              <a href="#blog">Blog</a>
               <div className={styles.mobileLanguageToggle}>
                 <button 
                   onClick={() => {
@@ -249,6 +252,7 @@ export default function Home() {
           t={t} 
           experience={experienceData[language as keyof typeof experienceData]} 
         />
+        <BlogView key={`blog-${language}`} language={language} t={t} />
         {/* Footer */}
         <FooterView key={`footer-${language}`} t={t} language={language} setLanguage={setLanguage} />
       </motion.div>
