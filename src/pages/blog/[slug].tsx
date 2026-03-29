@@ -2,8 +2,21 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { ArrowLeft, Calendar } from 'lucide-react';
-import blogs from '@/data/blog.json';
+import rawBlogs from '@/data/blog.json';
 import styles from '@/styles/Home.module.css';
+
+// TypeScript'e verinin şemasını öğretiyoruz
+interface BlogPostType {
+  id: string;
+  slug: string;
+  date: string;
+  title: { tr: string; en: string };
+  excerpt: { tr: string; en: string };
+  content: { tr: string; en: string };
+}
+
+// Boş JSON dosyasını zorla bu tipe çeviriyoruz
+const blogs = rawBlogs as BlogPostType[];
 
 export default function BlogPost() {
   const router = useRouter();
