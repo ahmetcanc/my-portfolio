@@ -3,7 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
-import blogs from '@/data/blog.json';
+import rawBlogs from '@/data/blog.json';
+
+// YENİ: TypeScript'e verinin şemasını öğretiyoruz (Aynı detay sayfasında yaptığımız gibi)
+interface BlogPostType {
+  id: string;
+  slug: string;
+  date: string;
+  title: { tr: string; en: string };
+  excerpt: { tr: string; en: string };
+  content: { tr: string; en: string };
+}
+
+// Boş JSON dosyasını zorla bu tipe çeviriyoruz
+const blogs = rawBlogs as BlogPostType[];
 
 interface BlogViewProps {
   t: any;
@@ -13,13 +26,8 @@ interface BlogViewProps {
 export default function BlogView({ t, language }: BlogViewProps) {
   const currentLang = (language === 'en' ? 'en' : 'tr') as 'tr' | 'en';
   
-  // YENİ: Tüm yazıları gösterip göstermeyeceğimizi tutan state
   const [showAll, setShowAll] = useState(false);
-  
-  // YENİ: State'e göre gösterilecek blogları filtreliyoruz
   const displayedBlogs = showAll ? blogs : blogs.slice(0, 3);
-  
-  // YENİ: Eğer toplam yazı sayısı 3'ten fazlaysa butonu göstereceğiz
   const hasMorePosts = blogs.length > 3;
 
   const containerVariants = {
@@ -37,14 +45,13 @@ export default function BlogView({ t, language }: BlogViewProps) {
       y: 0,
       transition: { duration: 0.5, ease: "easeOut" },
     },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } } // Kapanma animasyonu
+    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
   };
 
   return (
     <section id="blog" className={styles.aboutSection} style={{ minHeight: 'auto', paddingBottom: '4rem' }}>
       <div className={styles.sectionContent}>
         
-        {/* Başlık Alanı */}
         <motion.h2 
           className={styles.sectionTitle}
           initial={{ opacity: 0, y: 30 }}
@@ -62,7 +69,6 @@ export default function BlogView({ t, language }: BlogViewProps) {
           {t?.nav?.blog || (currentLang === 'en' ? 'Latest Posts' : 'Son Yazılarım')}
         </motion.h2>
 
-        {/* Blog Kartları Container */}
         <motion.div 
           className={styles.aboutContent} 
           style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}
@@ -79,7 +85,7 @@ export default function BlogView({ t, language }: BlogViewProps) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                layout // YENİ: Framer motion ile kartların yumuşak yerleşmesi için
+                layout 
               >
                 <Link href={`/blog/${blog.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <motion.div 
@@ -120,7 +126,6 @@ export default function BlogView({ t, language }: BlogViewProps) {
           </AnimatePresence>
         </motion.div>
 
-        {/* YENİ: Daha Fazla / Daha Az Göster Butonu */}
         {hasMorePosts && (
           <motion.div 
             initial={{ opacity: 0 }}
