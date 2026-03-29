@@ -95,7 +95,7 @@ func main() {
 		log.Fatalf("Request body marshal error: %v", err)
 	}
 
-	req, err := http.NewRequest("POST", "https://api..com/openai/v1/chat/completions", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", "https://api.groq.com/openai/v1/chat/completions", bytes.NewBuffer(jsonData))
 	if err != nil {
 		log.Fatalf("Request creation error: %v", err)
 	}
