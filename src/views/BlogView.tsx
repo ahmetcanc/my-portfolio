@@ -28,7 +28,7 @@ export default function BlogView({ t, language }: BlogViewProps) {
   const displayedBlogs = showAll ? blogs : blogs.slice(0, 3);
   const hasMorePosts = blogs.length > 3;
 
-  const containerVariants = {
+ const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -36,7 +36,7 @@ export default function BlogView({ t, language }: BlogViewProps) {
     },
   };
 
-const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -45,7 +45,7 @@ const itemVariants = {
     },
     exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
   };
-
+  
   return (
     <section id="blog" className={styles.aboutSection} style={{ minHeight: 'auto', paddingBottom: '4rem' }}>
       <div className={styles.sectionContent}>
