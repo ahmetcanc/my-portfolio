@@ -53,8 +53,8 @@ export default function BlogPost() {
               <Calendar size={16} style={{ marginRight: '0.5rem' }} />
               {post.date}
             </div>
-            <h1 style={{ fontSize: '2.5rem', md: '3rem', color: 'white', marginBottom: '1.5rem', lineHeight: 1.2, fontWeight: 'bold' }}>
-              {post.title[currentLang]}
+              <h1 style={{ fontSize: '2.5rem', color: 'white', marginBottom: '1.5rem', lineHeight: 1.2, fontWeight: 'bold' }}>
+                {post.title[currentLang]}
             </h1>
             <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', fontStyle: 'italic', lineHeight: 1.6 }}>
               {post.excerpt[currentLang]}
