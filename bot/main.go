@@ -84,8 +84,13 @@ func main() {
 
 	reqBody := Request{
 		Model: "llama3-70b-8192",
+<<<<<<< Updated upstream
 		Messages: []Message{
 			{Role: "system", Content: prompt},
+=======
+		Messages: []GroqMessage{
+			{Role: "user", Content: prompt},
+>>>>>>> Stashed changes
 		},
 		ResponseFormat: &Format{Type: "json_object"},
 	}
@@ -103,7 +108,7 @@ func main() {
 	req.Header.Set("Authorization", "Bearer "+apiKey)
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{Timeout: 30 * time.Second}
+	client := &http.Client{Timeout: 60 * time.Second}
 
 	fmt.Println("Waiting for  (Llama 3) AI Response...")
 	resp, err := client.Do(req)
