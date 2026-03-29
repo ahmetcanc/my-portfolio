@@ -40,7 +40,7 @@ func main() {
 	}
 	defer client.Close()
 
-	model := client.GenerativeModel("gemini-1.5-flash")
+	model := client.GenerativeModel("gemini-2.0-flash")
 	model.ResponseMIMEType = "application/json"
 
 	prompt := `You are a Senior Backend Engineer, Golang Expert, and Tech Blogger.
