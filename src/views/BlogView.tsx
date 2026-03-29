@@ -5,7 +5,6 @@ import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 import rawBlogs from '@/data/blog.json';
 
-// YENİ: TypeScript'e verinin şemasını öğretiyoruz (Aynı detay sayfasında yaptığımız gibi)
 interface BlogPostType {
   id: string;
   slug: string;
@@ -15,7 +14,6 @@ interface BlogPostType {
   content: { tr: string; en: string };
 }
 
-// Boş JSON dosyasını zorla bu tipe çeviriyoruz
 const blogs = rawBlogs as BlogPostType[];
 
 interface BlogViewProps {
