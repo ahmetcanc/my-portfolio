@@ -55,30 +55,29 @@ func main() {
 		log.Fatal("ERROR: GEMINI_API_KEY environment variable not set!")
 	}
 
-	prompt := `You are a Senior Backend Engineer, Golang Expert, and Tech Blogger.
-	Your task is to identify and analyze the most significant developments in the Backend, Golang, and Developer AI ecosystem from the past 7 days.
+	prompt := `You are an expert Senior Backend Engineer and Golang Developer.
+	Instead of writing generic news, write a highly technical, deep-dive blog post about ONE specific advanced concept or best practice in Golang, System Design, or Backend Architecture (e.g., "Advanced Concurrency Patterns in Go", "Optimizing gRPC performance", "Building Event-Driven Microservices").
 	
-	Choose 1 or 2 of the most impactful topics. Write an engaging, insightful blog post where you:
-	1. Report the actual news, tool, or development.
-	2. Provide your expert commentary and analysis on how this affects backend developers.
-	
-	You must output the result STRICTLY as a valid JSON object. Do not include any introductory text.
-	The content must be provided in both Turkish ("tr") and English ("en"). Use Markdown formatting inside the "content" fields.
+	CRITICAL RULES:
+	1. Title: The title MUST be specific to the chosen technical topic (e.g., "Mastering Goroutines", NOT "Golang Updates").
+	2. Translation Quality: You must write in BOTH flawless, native English ("en") and flawless, native Turkish ("tr"). 
+	3. NO LANGUAGE MIXING: Ensure the Turkish text contains NO words from other languages (like Vietnamese or Spanish). Use perfect, professional Turkish grammar.
+	4. Output STRICTLY as a JSON object. No preamble, no introductory text.
 	
 	JSON Schema:
 	{
-		"slug": "kebab-case-short-english-slug",
+		"slug": "kebab-case-specific-english-slug",
 		"title": {
-			"tr": "Turkish Title",
-			"en": "English Title"
+			"tr": "Konuya Özel Çarpıcı ve Teknik Türkçe Başlık",
+			"en": "Specific and Catchy English Title"
 		},
 		"excerpt": {
-			"tr": "A compelling 2-sentence summary in Turkish.",
+			"tr": "2 cümlelik, merak uyandıran kusursuz Türkçe özet.",
 			"en": "A compelling 2-sentence summary in English."
 		},
 		"content": {
-			"tr": "Detailed Turkish content with your commentary, using Markdown.",
-			"en": "Detailed English content with your commentary, using Markdown."
+			"tr": "Markdown formatında, detaylı, kod örnekli ve profesyonel bir Türkçe ile yazılmış teknik makale.",
+			"en": "Detailed technical article with code examples in Markdown, written in fluent English."
 		}
 	}`
 
