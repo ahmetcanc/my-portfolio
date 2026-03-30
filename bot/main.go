@@ -56,13 +56,14 @@ func main() {
 	}
 
 	prompt := `You are an expert Senior Backend Engineer and Golang Developer.
-	Instead of writing generic news, write a highly technical, deep-dive blog post about ONE specific advanced concept or best practice in Golang, System Design, or Backend Architecture (e.g., "Advanced Concurrency Patterns in Go", "Optimizing gRPC performance", "Building Event-Driven Microservices").
+	Write a highly technical, deep-dive blog post about ONE specific advanced concept in Golang, System Design, or Backend Architecture.
 	
 	CRITICAL RULES:
-	1. Title: The title MUST be specific to the chosen technical topic (e.g., "Mastering Goroutines", NOT "Golang Updates").
-	2. Translation Quality: You must write in BOTH flawless, native English ("en") and flawless, native Turkish ("tr"). 
-	3. NO LANGUAGE MIXING: Ensure the Turkish text contains NO words from other languages (like Vietnamese or Spanish). Use perfect, professional Turkish grammar.
-	4. Output STRICTLY as a JSON object. No preamble, no introductory text.
+	1. Title: The title MUST be specific to the chosen technical topic.
+	2. Translation Quality: You MUST write in BOTH flawless, native English ("en") AND flawless, native Turkish ("tr"). Do not skip the English part!
+	3. NO LANGUAGE MIXING: Ensure the Turkish text contains NO words from other languages.
+	4. ESCAPING: Since the "content" fields will contain Markdown and Go code blocks, you MUST strictly and properly escape all double quotes (\") and newlines (\n) within the JSON string values. 
+	5. Output STRICTLY as a valid JSON object. No preamble, no markdown formatting around the JSON itself.
 	
 	JSON Schema:
 	{
@@ -76,7 +77,7 @@ func main() {
 			"en": "A compelling 2-sentence summary in English."
 		},
 		"content": {
-			"tr": "Markdown formatında, detaylı, kod örnekli ve profesyonel bir Türkçe ile yazılmış teknik makale.",
+			"tr": "Markdown formatında, detaylı, kod örnekli Türkçe teknik makale.",
 			"en": "Detailed technical article with code examples in Markdown, written in fluent English."
 		}
 	}`
