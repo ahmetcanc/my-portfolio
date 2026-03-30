@@ -83,7 +83,7 @@ func main() {
 	}`
 
 	reqBody := Request{
-		Model: "llama3-70b-8192",
+		Model: "llama-3.3-70b-versatile",
 		Messages: []Message{
 			{Role: "user", Content: prompt},
 		},
