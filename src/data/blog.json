@@ -1,5 +1,22 @@
 [
   {
+    "id": "1774855547",
+    "slug": "golang-mutexes-and-concurrency",
+    "date": "2026-03-30",
+    "title": {
+      "tr": "Golang'da Senkronizasyon: Mutex'lerin ve Paralellikilerin Derinlemesine İncelenmesi",
+      "en": "Mastering Concurrency in Golang: A Deep Dive into Mutexes and Parallelism"
+    },
+    "excerpt": {
+      "tr": "Golang, modern sistemlerin gerektirdiği yüksek performanslı ve paralel uygulamalar geliştirmek için ideal bir dil olarak kabul edilir. Bu makalede, Golang'da senkronizasyonun temel kavramlarından biri olan mutex'leri ve bunların paralellikle nasıl etkileşime girdiğini inceleyeceğiz. ",
+      "en": "Golang is considered an ideal language for developing high-performance and parallel applications as required by modern systems. In this article, we will explore mutexes, a fundamental concept in synchronization in Golang, and how they interact with parallelism."
+    },
+    "content": {
+      "tr": "Golang, modern sistemlerin gerektirdiği yüksek performanslı ve paralel uygulamalar geliştirmek için ideal bir dil olarak kabul edilir. Bu důvodu nedeniyle, Golang geliştiricilerinin senkronizasyon kavramını iyi anlamaları gerekir. Bu makalede, Golang'da senkronizasyonun temel kavramlarından biri olan mutex'leri ve bunların paralellikle nasıl etkileşime girdiğini inceleyeceğiz.\n\n### Mutex Nedir?\n\nMutex, \"mutual exclusion\" teriminin kısaltması olarak kullanılır ve iki veya daha fazla iş parçacığının aynı anda belirli bir kaynağı paylaşmasını engellemeye yarar. Bir mutex, bir kilit olarak düşünülebilir; bir iş parçacığı mutex'i kilittiyse, diğer iş parçacıkları aynı mutex'i kilitleyemez.\n\n### Golang'da Mutex Kullanımı\n\nGolang'da mutex'ler, `sync` paketinde bulunan `Mutex` tipi kullanılarak uygulanır. Aşağıdaki örnekte, bir mutex kullanarak iki iş parçacığının aynı anda paylaşılan bir kaynağı güncellemesini engelleyeceğiz.\n\n```go\npackage main\n\nimport (\n    \"fmt\"\n    \"sync\"\n)\n\nvar (\n    mu      sync.Mutex\n    counter int\n)\n\nfunc worker() {\n    mu.Lock()\n    counter++\n    mu.Unlock()\n}\n\nfunc main() {\n    var wg sync.WaitGroup\n    for i := 0; i \u003c 1000; i++ {\n        wg.Add(1)\n        go func() {\n            worker()\n            wg.Done()\n        }()\n    }\n    wg.Wait()\n    fmt.Println(counter)\n}\n```\n\nBu örnekte, `worker` işlevi paylaşılan `counter` değişkenini artırır. `main` işlevinde, 1000 iş parçacığı oluşturulur ve her bir iş parçacığı `worker` işlevini çalıştırır. Mutex usage without synchronization would result in a data race, and the final value of `counter` would be unpredictable. However, with the mutex, the final value of `counter` will always be 1000.",
+      "en": "Golang is considered an ideal language for developing high-performance and parallel applications as required by modern systems. For this reason, Golang developers need to understand the concept of synchronization well. In this article, we will explore mutexes, a fundamental concept in synchronization in Golang, and how they interact with parallelism.\n\n### What is a Mutex?\n\nA mutex is short for \"mutual exclusion\" and is used to prevent two or more threads from sharing the same resource simultaneously. A mutex can be thought of as a lock; if one thread locks the mutex, other threads cannot lock the same mutex.\n\n### Using Mutexes in Golang\n\nIn Golang, mutexes are implemented using the `Mutex` type in the `sync` package. In the following example, we will use a mutex to prevent two threads from updating a shared resource at the same time.\n\n```go\npackage main\n\nimport (\n    \"fmt\"\n    \"sync\"\n)\n\nvar (\n    mu      sync.Mutex\n    counter int\n)\n\nfunc worker() {\n    mu.Lock()\n    counter++\n    mu.Unlock()\n}\n\nfunc main() {\n    var wg sync.WaitGroup\n    for i := 0; i \u003c 1000; i++ {\n        wg.Add(1)\n        go func() {\n            worker()\n            wg.Done()\n        }()\n    }\n    wg.Wait()\n    fmt.Println(counter)\n}\n```\n\nIn this example, the `worker` function increments the shared `counter` variable. In the `main` function, 1000 threads are created, and each thread runs the `worker` function. Without synchronization, this would result in a data race, and the final value of `counter` would be unpredictable. However, with the mutex, the final value of `counter` will always be 1000."
+    }
+  },
+  {
     "id": "1774852825",
     "slug": "golang-ai-developments",
     "date": "2026-03-30",
