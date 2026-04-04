@@ -1,5 +1,22 @@
 [
   {
+    "id": "1775295236",
+    "slug": "advanced-golang-concurrency-control",
+    "date": "2026-04-04",
+    "title": {
+      "tr": "Golang İleri Seviye Paralellik Kontrolü: Channels ve Goroutine'ler",
+      "en": "Mastering Advanced Concurrency Control in Golang: Channels and Goroutines"
+    },
+    "excerpt": {
+      "tr": "Bu makale, Golang'da Channels ve Goroutine'lerin kullanımını derinlemesine inceleyecek ve advanced concurrency kontrolü örnekleri sunacaktır. İleri seviye paralellik kontrolüne ilişkin en iyi uygulamaları keşfedeceğiz.",
+      "en": "This article delves into the in-depth use of Channels and Goroutines in Golang, providing examples of advanced concurrency control. We will explore best practices for mastering concurrency control in Golang."
+    },
+    "content": {
+      "tr": "Golang, doğal olarak paralel bir programlama dilidir. \\n\\nGoroutine'ler ve Channels, Golang'da paralellik kontrolü için kullanılan iki temel yapıttır. \\n\\nAşağıdaki örnek, bir Channel'ı kullanarak iki Goroutine arasında veri alışverişi yapılmasını sağlar: \\n```go\\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n)\\n\\nfunc main() {\\n    ch := make(chan int)\\n    go func() {\\n        ch \u003c- 5\\n    }()\\n    fmt.Println(\u003c-ch)\\n}\\n```\\n\\nBu örnekte, ana Goroutine bir Channel oluşturur ve bir alt Goroutine'i başlatır. Alt Goroutine, Channel'a bir değer yazar, ana Goroutine ise bu değeri okur. \\n\\n Channels, aynı zamanda paralel işlemlerin senkronizasyonunu da sağlar. \\n```go\\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n    \\\"sync\\\"\\n)\\n\\nvar wg sync.WaitGroup\\n\\nfunc worker(id int) {\\n    defer wg.Done()\\n    fmt.Printf(\\\"%d. çalışanı işini tamamladı\\\", id)\\n}\\n\\nfunc main() {\\n    for i := 1; i \u003c= 5; i++ {\\n        wg.Add(1)\\n        go worker(i)\\n    }\\n    wg.Wait()\\n    fmt.Println(\\\"Tüm işlemler tamamladı\\\")\\n}\\n```",
+      "en": "Golang is inherently a concurrent programming language. \\n\\nGoroutines and Channels are two fundamental constructs used for concurrency control in Golang. \\n\\nThe following example demonstrates data exchange between two Goroutines using a Channel: \\n```go\\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n)\\n\\nfunc main() {\\n    ch := make(chan int)\\n    go func() {\\n        ch \u003c- 5\\n    }()\\n    fmt.Println(\u003c-ch)\\n}\\n```\\n\\nIn this example, the main Goroutine creates a Channel and starts a new Goroutine. The new Goroutine writes a value to the Channel, and the main Goroutine reads this value. \\n\\nChannels also provide synchronization for concurrent operations. \\n```go\\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n    \\\"sync\\\"\\n)\\n\\nvar wg sync.WaitGroup\\n\\nfunc worker(id int) {\\n    defer wg.Done()\\n    fmt.Printf(\\\"Worker %d finished its job\\\", id)\\n}\\n\\nfunc main() {\\n    for i := 1; i \u003c= 5; i++ {\\n        wg.Add(1)\\n        go worker(i)\\n    }\\n    wg.Wait()\\n    fmt.Println(\\\"All operations completed\\\")\\n}\\n```"
+    }
+  },
+  {
     "id": "1774855547",
     "slug": "golang-mutexes-and-concurrency",
     "date": "2026-03-30",
