@@ -1,5 +1,22 @@
 [
   {
+    "id": "1775900185",
+    "slug": "advanced-golang-concurrency-patterns",
+    "date": "2026-04-11",
+    "title": {
+      "tr": "Golang'de İleri Seviye Paralellik Kalıpları: Channels ve Goroutine'ler",
+      "en": "Mastering Advanced Concurrency Patterns in Golang: Channels and Goroutines"
+    },
+    "excerpt": {
+      "tr": "Bu makale, Golang'de channels ve goroutine'lerin kullanımını derinlemesine ele alıyor. Paralellik kalıpları ve gerçek dünya örnekleri ile birlikte, bu konuya hakim olmak için gerekli araçları sunuyor. İleri seviye Golang konularını keşfedin ve performansı artırıcı teknikleri öğrenin.",
+      "en": "This article delves into the advanced usage of channels and goroutines in Golang, providing essential tools for mastering concurrency patterns. With real-world examples and deep dives into parallelism, discover how to harness the power of Golang for performance-critical applications."
+    },
+    "content": {
+      "tr": "Golang, paralellik ve concurrency desteği ile bilinir. Channels ve goroutine'ler, Golang'in bu alandaki iki temel bileşenidir. \\n\\n### Channels \\nChannels, Golang'de paralel olarak çalışan fonksiyonlar arasındaki veri alışverişini sağlayan temel bir yapıdır. \\n```go \\nch := make(chan int) \\n\\n// Veri gönderme \\ngo func() { \\n    ch \\n}(5) \\n\\n// Veri alma \\nveri := \\n ch \\n``` \\nBu basit örnekte, bir channel oluşturup veri gönderip almayı gösterdik. \\n\\n### Goroutine'ler \\nGoroutine'ler, Golang'in lightweight thread'lerine benzer bir yapıya sahiptir. \\n```go \\ngo func() { \\n    // İşlem \\n}(\\n) \\n``` \\nBu şekilde, işlemlerin paralel olarak yürütülmesini sağlıyoruz. \\n\\nGoroutine'ler ve channels birlikte kullanılırken, programa paralellik kazandırır ve performansı artırır. \\n```go \\nfunc main() { \\n    // Channel oluşturma \\n    ch := make(chan int) \\n \\n    // Goroutine başlatma \\n    go func() { \\n        // Veri işleme \\n        veri := 5 \\n        ch \\n    }() \\n \\n    // Veri alma \\n    veri := \\n ch \\n    fmt.Println(veri) \\n} \\n```",
+      "en": "Golang is renowned for its built-in concurrency support. Channels and goroutines are the two fundamental components of Golang's concurrency model. \\n\\n### Channels \\nChannels are the backbone of data exchange between concurrently executing functions in Golang. \\n```go \\nch := make(chan int) \\n\\n// Sending data \\ngo func() { \\n    ch \\n}(5) \\n\\n// Receiving data \\nveri := \\n ch \\n``` \\nIn this simple example, we demonstrated the creation of a channel and the process of sending and receiving data. \\n\\n### Goroutines \\nGoroutines are similar to lightweight threads in other languages. \\n```go \\ngo func() { \\n    // Operation \\n}(\\n) \\n``` \\nBy using goroutines, we enable the parallel execution of operations. \\n\\nWhen used together, goroutines and channels introduce parallelism into a program and enhance its performance. \\n```go \\nfunc main() { \\n    // Create a channel \\n    ch := make(chan int) \\n \\n    // Start a goroutine \\n    go func() { \\n        // Process data \\n        veri := 5 \\n        ch \\n    }() \\n \\n    // Receive data \\n    veri := \\n ch \\n    fmt.Println(veri) \\n} \\n```"
+    }
+  },
+  {
     "id": "1775295236",
     "slug": "advanced-golang-concurrency-control",
     "date": "2026-04-04",
