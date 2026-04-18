@@ -1,5 +1,22 @@
 [
   {
+    "id": "1776505393",
+    "slug": "advanced-concurrency-control-in-golang",
+    "date": "2026-04-18",
+    "title": {
+      "tr": "Golang'de İleri Seviye Paralellik Kontrolü: Channel ve Goroutine Kullanımı",
+      "en": "Mastering Concurrency Control in Golang: A Deep Dive into Channels and Goroutines"
+    },
+    "excerpt": {
+      "tr": "Bu makalede, Golang'de advanced paralellik kontrolü için kênh ve goroutine'lerden nasıl efektif bir şekilde yararlanılabileceğini inceleyeceğiz. Golang'de paralellik kontrolünün temellerini ve nasıl uygulanacağını öğrenin.",
+      "en": "This article explores the effective use of channels and goroutines for advanced concurrency control in Golang. Learn the fundamentals and applications of concurrency control in Golang."
+    },
+    "content": {
+      "tr": "Golang, güçlü paralellik özellikleri sunan bir dildir.Channel ve goroutine'ler, Golang'de paralellik kontrolü için temel bileşenlerdir.\n\n### Kanal Kullanımı\nKanallar, goroutine'ler arasındaki veri alışverişini sağlar. Aşağıdaki örnekte, iki goroutine arasında kanal kullanarak veri alışverişi yapılır:\n```go\npackage main\n\nimport (\\n    \"fmt\"\\n    \"time\"\\n)\n\nfunc main() {\\n    ch := make(chan int)\\n    go func() {\\n        time.Sleep(1 * time.Second)\\n        ch , 1\\n    }()\\n    data := , ch\\n    fmt.Println(data)\\n}\n```\n### Goroutine Kullanımı\nGoroutine'ler, Golang'de lightweight thread'lerdir. Aşağıdaki örnekte, bir goroutine oluşturup çalıştırılır:\n```go\npackage main\n\nimport (\\n    \"fmt\"\\n    \"time\"\\n)\n\nfunc main() {\\n    go func() {\\n        time.Sleep(1 * time.Second)\\n        fmt.Println(\"Goroutine bitti\")\\n    }()\\n    time.Sleep(2 * time.Second)\\n    fmt.Println(\"Ana işlemler bitti\")\\n}\n```\nBu makalede, Golang'de paralellik kontrolü için kullanılan advanced teknikleri ve örnek kullanımları inceleyerek, daha efektif ve verimli paralel programlama yapabileceksiniz.",
+      "en": "Golang is a language that provides powerful concurrency features. Channels and goroutines are the fundamental components for concurrency control in Golang.\n\n### Using Channels\nChannels enable data exchange between goroutines. In the example below, data is exchanged between two goroutines using a channel:\n```go\npackage main\n\nimport (\\n    \"fmt\"\\n    \"time\"\\n)\n\nfunc main() {\\n    ch := make(chan int)\\n    go func() {\\n        time.Sleep(1 * time.Second)\\n        ch \u003c- 1\\n    }()\\n    data := \u003c- ch\\n    fmt.Println(data)\\n}\n```\n### Using Goroutines\nGoroutines are lightweight threads in Golang. In the example below, a goroutine is created and executed:\n```go\npackage main\n\nimport (\\n    \"fmt\"\\n    \"time\"\\n)\n\nfunc main() {\\n    go func() {\\n        time.Sleep(1 * time.Second)\\n        fmt.Println(\"Goroutine finished\")\\n    }()\\n    time.Sleep(2 * time.Second)\\n    fmt.Println(\"Main operations finished\")\\n}\n```\nBy exploring the advanced techniques and example usage of concurrency control in Golang, you will be able to achieve more efficient and effective parallel programming."
+    }
+  },
+  {
     "id": "1775900185",
     "slug": "advanced-golang-concurrency-patterns",
     "date": "2026-04-11",
