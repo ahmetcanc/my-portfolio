@@ -1,5 +1,22 @@
 [
   {
+    "id": "1777715770",
+    "slug": "advanced-golang-concurrency-control",
+    "date": "2026-05-02",
+    "title": {
+      "tr": "Golang ile İleri Düzey Paralellik Kontrolü: Kanallar ve Goroutine'ler",
+      "en": "Mastering Concurrency Control in Golang: Channels and Goroutines"
+    },
+    "excerpt": {
+      "tr": "Bu makalede, Golang'da paralellik kontrolünün temellerini ve kanallar ile goroutine'lerin nasıl hiệu kullanıldığını öğreneceksiniz. Ayrıca, gerçek dünya örnekleri ile birlikte avanzı teknikleri keşfedeceğiz.",
+      "en": "This article delves into the fundamentals of concurrency control in Golang, exploring the use of channels and goroutines. We will also discover advanced techniques through real-world examples."
+    },
+    "content": {
+      "tr": "Golang,并发 kontrolü için güçlü bir temel sunar. \\n\\nGoroutine'ler, lightweight thread'ler gibi çalışırlar ve kanallar, bunlar arasındaki iletişimi sağlar. \\n\\n```go\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n)\\n\\nfunc main() {\\n    ch := make(chan int)\\n    go func() {\\n        ch \u003c- 5\\n    }()\\n    fmt.Println(\u003c-ch)\\n}\\n```. Bu örnek, kanalların temel kullanýmını gösterir.\\n\\nDaha komplex örnekler için,\\n```go\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n    \\\"time\\\"\\n)\\n\\nfunc worker(id int, ch chan int) {\\n    fmt.Printf(\\\"Worker %d started\\n\\\", id)\\n    time.Sleep(2 * time.Second)\\n    ch \u003c- id\\n}\\n\\nfunc main() {\\n    ch := make(chan int)\\n    for i := 1; i \u003c= 5; i++ {\\n        go worker(i, ch)\\n    }\\n    for i := 1; i \u003c= 5; i++ {\\n        id := \u003c-ch\\n        fmt.Printf(\\\"Worker %d finished\\n\\\", id)\\n    }\\n}\\n```. Bu örnek, 5 worker goroutine'nin, ana goroutine ile kanallar aracılığıyla nasıl iletişim kurduğunu gösterir.",
+      "en": "Golang provides a strong foundation for concurrency control. \\n\\nGoroutines work like lightweight threads, and channels facilitate communication between them. \\n\\n```go\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n)\\n\\nfunc main() {\\n    ch := make(chan int)\\n    go func() {\\n        ch \u003c- 5\\n    }()\\n    fmt.Println(\u003c-ch)\\n}\\n```. This example demonstrates the basic usage of channels. \\n\\nFor more complex examples, \\n```go\npackage main\\n\\nimport (\\n    \\\"fmt\\\"\\n    \\\"time\\\"\\n)\\n\\nfunc worker(id int, ch chan int) {\\n    fmt.Printf(\\\"Worker %d started\\n\\\", id)\\n    time.Sleep(2 * time.Second)\\n    ch \u003c- id\\n}\\n\\nfunc main() {\\n    ch := make(chan int)\\n    for i := 1; i \u003c= 5; i++ {\\n        go worker(i, ch)\\n    }\\n    for i := 1; i \u003c= 5; i++ {\\n        id := \u003c-ch\\n        fmt.Printf(\\\"Worker %d finished\\n\\\", id)\\n    }\\n}\\n```. This example shows how 5 worker goroutines communicate with the main goroutine through channels."
+    }
+  },
+  {
     "id": "1776505393",
     "slug": "advanced-concurrency-control-in-golang",
     "date": "2026-04-18",
