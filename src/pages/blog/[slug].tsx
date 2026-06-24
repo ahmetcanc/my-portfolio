@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import rawBlogs from '@/data/blog.json';
 import styles from '@/styles/Home.module.css';
@@ -17,6 +18,121 @@ interface BlogPostType {
 
 // Boş JSON dosyasını zorla bu tipe çeviriyoruz
 const blogs = rawBlogs as BlogPostType[];
+
+function renderInlineMarkdown(text: string): ReactNode[] {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+
+    return part;
+  });
+}
+
+function renderMarkdown(markdown: string): ReactNode[] {
+  const normalized = markdown.replace(/\\n/g, '\n');
+  const lines = normalized.split('\n');
+  const nodes: ReactNode[] = [];
+  let paragraph: string[] = [];
+  let listItems: string[] = [];
+  let codeLines: string[] = [];
+  let isCodeBlock = false;
+  let codeLanguage = '';
+
+  const flushParagraph = () => {
+    if (paragraph.length === 0) return;
+
+    nodes.push(
+      <p key={`p-${nodes.length}`}>
+        {renderInlineMarkdown(paragraph.join(' '))}
+      </p>
+    );
+    paragraph = [];
+  };
+
+  const flushList = () => {
+    if (listItems.length === 0) return;
+
+    nodes.push(
+      <ul key={`ul-${nodes.length}`}>
+        {listItems.map((item, index) => (
+          <li key={index}>{renderInlineMarkdown(item)}</li>
+        ))}
+      </ul>
+    );
+    listItems = [];
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('```')) {
+      if (isCodeBlock) {
+        nodes.push(
+          <pre key={`code-${nodes.length}`} data-language={codeLanguage || undefined}>
+            <code>{codeLines.join('\n')}</code>
+          </pre>
+        );
+        codeLines = [];
+        codeLanguage = '';
+        isCodeBlock = false;
+        return;
+      }
+
+      flushParagraph();
+      flushList();
+      codeLanguage = trimmed.replace('```', '').trim();
+      isCodeBlock = true;
+      return;
+    }
+
+    if (isCodeBlock) {
+      codeLines.push(line);
+      return;
+    }
+
+    if (!trimmed) {
+      flushParagraph();
+      flushList();
+      return;
+    }
+
+    if (trimmed.startsWith('### ')) {
+      flushParagraph();
+      flushList();
+      nodes.push(<h3 key={`h3-${nodes.length}`}>{trimmed.slice(4)}</h3>);
+      return;
+    }
+
+    if (trimmed.startsWith('## ')) {
+      flushParagraph();
+      flushList();
+      nodes.push(<h2 key={`h2-${nodes.length}`}>{trimmed.slice(3)}</h2>);
+      return;
+    }
+
+    if (trimmed.startsWith('- ')) {
+      flushParagraph();
+      listItems.push(trimmed.slice(2));
+      return;
+    }
+
+    paragraph.push(trimmed);
+  });
+
+  if (isCodeBlock) {
+    nodes.push(
+      <pre key={`code-${nodes.length}`} data-language={codeLanguage || undefined}>
+        <code>{codeLines.join('\n')}</code>
+      </pre>
+    );
+  }
+
+  flushParagraph();
+  flushList();
+
+  return nodes;
+}
 
 export default function BlogPost() {
   const router = useRouter();
@@ -61,8 +177,8 @@ export default function BlogPost() {
             </p>
           </header>
 
-          <div style={{ color: 'var(--text-primary)', lineHeight: 1.8, fontSize: '1.1rem', whiteSpace: 'pre-wrap' }}>
-            {post.content[currentLang]}
+          <div className={styles.blogArticleContent}>
+            {renderMarkdown(post.content[currentLang])}
           </div>
         </article>
       </main>

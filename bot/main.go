@@ -23,6 +23,7 @@ const (
 )
 
 var slugPattern = regexp.MustCompile(`^[a-z0-9]+(?:-[a-z0-9]+)*$`)
+var unsupportedScriptPattern = regexp.MustCompile(`[\p{Han}\p{Hiragana}\p{Katakana}\p{Hangul}]`)
 
 var stopWords = map[string]struct{}{
 	"a": {}, "an": {}, "and": {}, "architecture": {}, "backend": {}, "control": {},
@@ -161,6 +162,8 @@ func buildPrompt(recentPosts, feedback string) string {
 		"6. Output STRICTLY as a valid JSON object. No preamble, no markdown formatting around the JSON itself.",
 		"7. The slug must be unique, kebab-case, and aligned with the topic.",
 		"8. Each content field must be a substantial Markdown article with concrete tradeoffs, implementation details, and at least one valid code example when relevant.",
+		"9. Do not invent APIs, functions, packages, or kernel capabilities. If the topic needs code, use compilable or explicitly pseudocode examples.",
+		"10. Do not use Chinese, Japanese, Korean, Cyrillic, or other non-Turkish/non-English script characters anywhere in the response.",
 		"JSON Schema:",
 		`{
   "slug": "kebab-case-specific-english-slug",
@@ -267,6 +270,10 @@ func validatePost(newPost BlogPost, posts []BlogPost) error {
 		return fmt.Errorf("content is too short for a deep-dive post")
 	}
 
+	if hasUnsupportedScript(newPost) {
+		return fmt.Errorf("post contains unsupported script characters")
+	}
+
 	for _, post := range posts {
 		if post.Slug == newPost.Slug {
 			return fmt.Errorf("slug already exists: %s", newPost.Slug)
@@ -280,6 +287,26 @@ func validatePost(newPost BlogPost, posts []BlogPost) error {
 	}
 
 	return nil
+}
+
+func hasUnsupportedScript(post BlogPost) bool {
+	values := []string{
+		post.Slug,
+		post.Title.TR,
+		post.Title.EN,
+		post.Excerpt.TR,
+		post.Excerpt.EN,
+		post.Content.TR,
+		post.Content.EN,
+	}
+
+	for _, value := range values {
+		if unsupportedScriptPattern.MatchString(value) {
+			return true
+		}
+	}
+
+	return false
 }
 
 func validateRequiredFields(post BlogPost) error {
