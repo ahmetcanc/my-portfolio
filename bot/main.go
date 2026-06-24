@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"io"
 	"log"
@@ -17,9 +18,12 @@ import (
 const (
 	blogFilePath     = "../src/data/blog.json"
 	groqURL          = "https://api.groq.com/openai/v1/chat/completions"
+	goDownloadsURL   = "https://go.dev/dl/?mode=json"
+	goBlogFeedURL    = "https://go.dev/blog/feed.atom"
 	modelName        = "llama-3.3-70b-versatile"
 	maxAttempts      = 4
 	recentPostsLimit = 12
+	goBlogLimit      = 5
 )
 
 var slugPattern = regexp.MustCompile(`^[a-z0-9]+(?:-[a-z0-9]+)*$`)
@@ -69,6 +73,24 @@ type Response struct {
 	} `json:"choices"`
 }
 
+type GoRelease struct {
+	Version string `json:"version"`
+	Stable  bool   `json:"stable"`
+}
+
+type AtomFeed struct {
+	Entries []AtomEntry `xml:"entry"`
+}
+
+type AtomEntry struct {
+	Title   string `xml:"title"`
+	Updated string `xml:"updated"`
+	Link    struct {
+		Href string `xml:"href,attr"`
+	} `xml:"link"`
+	Summary string `xml:"summary"`
+}
+
 func main() {
 	apiKey := strings.TrimSpace(os.Getenv("GEMINI_API_KEY"))
 	if apiKey == "" {
@@ -81,11 +103,12 @@ func main() {
 	}
 
 	recentPosts := summarizeRecentPosts(posts, recentPostsLimit)
+	goSources := fetchGoSourceSummary()
 	feedback := ""
 	var newPost BlogPost
 
 	for attempt := 1; attempt <= maxAttempts; attempt++ {
-		prompt := buildPrompt(recentPosts, feedback)
+		prompt := buildPrompt(recentPosts, goSources, feedback)
 		candidate, raw, err := generatePost(apiKey, prompt)
 		if err != nil {
 			feedback = fmt.Sprintf("Previous attempt failed because the response was invalid: %v. Return only valid JSON.", err)
@@ -149,10 +172,125 @@ func summarizeRecentPosts(posts []BlogPost, limit int) string {
 	return strings.Join(lines, "\n")
 }
 
-func buildPrompt(recentPosts, feedback string) string {
+func fetchGoSourceSummary() string {
+	var sections []string
+
+	if releaseSummary, err := fetchGoReleaseSummary(); err != nil {
+		log.Printf("Go release source unavailable: %v", err)
+		sections = append(sections, "- Latest Go release: unavailable from go.dev/dl at generation time.")
+	} else {
+		sections = append(sections, releaseSummary)
+	}
+
+	if blogSummary, err := fetchGoBlogSummary(goBlogLimit); err != nil {
+		log.Printf("Go blog source unavailable: %v", err)
+		sections = append(sections, "- Recent Go blog posts: unavailable from go.dev/blog/feed.atom at generation time.")
+	} else {
+		sections = append(sections, blogSummary)
+	}
+
+	return strings.Join(sections, "\n")
+}
+
+func fetchGoReleaseSummary() (string, error) {
+	body, err := fetchURL(goDownloadsURL)
+	if err != nil {
+		return "", err
+	}
+
+	var releases []GoRelease
+	if err := json.Unmarshal(body, &releases); err != nil {
+		return "", fmt.Errorf("parse go releases: %w", err)
+	}
+
+	if len(releases) == 0 {
+		return "", fmt.Errorf("no Go releases returned")
+	}
+
+	var stableVersions []string
+	for _, release := range releases {
+		if release.Stable {
+			stableVersions = append(stableVersions, release.Version)
+		}
+		if len(stableVersions) == 2 {
+			break
+		}
+	}
+
+	if len(stableVersions) == 0 {
+		stableVersions = append(stableVersions, releases[0].Version)
+	}
+
+	return fmt.Sprintf("- Latest official Go stable versions from go.dev/dl: %s.", strings.Join(stableVersions, ", ")), nil
+}
+
+func fetchGoBlogSummary(limit int) (string, error) {
+	body, err := fetchURL(goBlogFeedURL)
+	if err != nil {
+		return "", err
+	}
+
+	var feed AtomFeed
+	if err := xml.Unmarshal(body, &feed); err != nil {
+		return "", fmt.Errorf("parse Go blog feed: %w", err)
+	}
+
+	if len(feed.Entries) == 0 {
+		return "", fmt.Errorf("no Go blog entries returned")
+	}
+
+	if len(feed.Entries) < limit {
+		limit = len(feed.Entries)
+	}
+
+	lines := []string{"- Recent official Go blog posts:"}
+	for i := 0; i < limit; i++ {
+		entry := feed.Entries[i]
+		lines = append(lines, fmt.Sprintf("  - %s (%s) %s", strings.TrimSpace(entry.Title), shortDate(entry.Updated), strings.TrimSpace(entry.Link.Href)))
+	}
+
+	return strings.Join(lines, "\n"), nil
+}
+
+func fetchURL(url string) ([]byte, error) {
+	client := &http.Client{Timeout: 20 * time.Second}
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("create request: %w", err)
+	}
+	req.Header.Set("User-Agent", "my-portfolio-blog-bot/1.0")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("fetch %s: %w", url, err)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("read %s: %w", url, err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("%s returned %d: %s", url, resp.StatusCode, string(body))
+	}
+
+	return body, nil
+}
+
+func shortDate(value string) string {
+	if len(value) >= len("2006-01-02") {
+		return value[:len("2006-01-02")]
+	}
+
+	return value
+}
+
+func buildPrompt(recentPosts, goSources, feedback string) string {
 	sections := []string{
 		"You are an expert Senior Backend Engineer and Golang Developer.",
 		"Write a highly technical, deep-dive blog post about ONE specific advanced concept in Golang, System Design, or Backend Architecture.",
+		"When discussing recent Go releases or Go project news, rely only on the official Go source summary below.",
 		"CRITICAL RULES:",
 		"1. The title MUST be specific to the chosen technical topic.",
 		"2. You MUST write in BOTH flawless, native English (en) AND flawless, native Turkish (tr).",
@@ -164,6 +302,7 @@ func buildPrompt(recentPosts, feedback string) string {
 		"8. Each content field must be a substantial Markdown article with concrete tradeoffs, implementation details, and at least one valid code example when relevant.",
 		"9. Do not invent APIs, functions, packages, or kernel capabilities. If the topic needs code, use compilable or explicitly pseudocode examples.",
 		"10. Do not use Chinese, Japanese, Korean, Cyrillic, or other non-Turkish/non-English script characters anywhere in the response.",
+		"11. If the official source summary does not mention a claimed recent Go release or feature, do not claim it exists.",
 		"JSON Schema:",
 		`{
   "slug": "kebab-case-specific-english-slug",
@@ -180,6 +319,8 @@ func buildPrompt(recentPosts, feedback string) string {
     "en": "Detailed technical article with code examples in Markdown, written in fluent English."
   }
 }`,
+		"Official Go source summary:",
+		goSources,
 		"Recent posts to avoid repeating:",
 		recentPosts,
 	}
