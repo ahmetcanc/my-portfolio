@@ -14,7 +14,9 @@ interface BlogPostType {
   content: { tr: string; en: string };
 }
 
-const blogs = rawBlogs as BlogPostType[];
+const blogs = [...(rawBlogs as BlogPostType[])].sort((a, b) => {
+  return new Date(b.date).getTime() - new Date(a.date).getTime();
+});
 
 interface BlogViewProps {
   t: any;
