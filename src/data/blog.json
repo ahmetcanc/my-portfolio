@@ -1,5 +1,22 @@
 [
   {
+    "id": "1784975020",
+    "slug": "go-type-embedding-and-ambiguity-resolution",
+    "date": "2026-07-25",
+    "title": {
+      "tr": "Go'da Tür Gömme ve Belirsizlik Çözme: Gelişmiş Teknikler",
+      "en": "Type Embedding and Ambiguity Resolution in Go: Advanced Techniques"
+    },
+    "excerpt": {
+      "tr": "Bu teknik makale, Go programlama dilindeki tür gömme ve belirsizlik çözümleme konularına derinlemesine bir bakış sunar. Tür gömme ve metod överloading gibi konuları ele alır. Ayrıca, örneklerle birlikte giải thíchlenmiştir.",
+      "en": "This advanced technical article provides an in-depth look at type embedding and ambiguity resolution in the Go programming language, covering topics such as method overriding and type promotion, with accompanying code examples."
+    },
+    "content": {
+      "tr": "# Go'da Tür Gömme ve Belirsizlik Çözme \n\n         Tür gömme, Go programlama dilinin temel özelliklerinden biridir. Bu özellik, bir türün başka bir türe gömülerek genişletilmesine olanak tanır. \n\n         ```go \n\n         type personel struct { \n\n            ad string \n\n            soyad string \n\n         } \n\n         type yonetici struct { \n\n            personel \n\n            departman string \n\n         } \n\n         ``` \n\n         Ancak, bu özellik đôi zaman belirsizliklere neden olabilir. Örneğin, ` personel` ve `yonetici` türleri aynı isimde bir metod içerebilir. Bu durumda, hangi metodu çağırdığımızı belirlemek zor olabilir. \n\n         ```go \n\n         func (p personel) selamlama() { \n\n            fmt.Println(\"Merhaba\", p.ad) \n\n         } \n\n         func (y yonetici) selamlama() { \n\n            fmt.Println(\"Merhaba\", y.ad, \"\", y.departman) \n\n         } \n\n         ``` \n\n         Bu gibi durumlarda, Go dilinin belirsizlik çözümleme kuralları devreye girer. Bu kurallar, hangi metodu çağırdığımızı belirlememize yardımcı olur.",
+      "en": "# Type Embedding and Ambiguity Resolution in Go \n\n         Type embedding is a fundamental feature of the Go programming language. This feature allows one type to be embedded within another, effectively promoting the embedded type's fields and methods to the outer type. \n\n         ```go \n\n         type employee struct { \n\n            name string \n\n            surname string \n\n         } \n\n         type manager struct { \n\n            employee \n\n            department string \n\n         } \n\n         ``` \n\n         However, this feature can sometimes lead to ambiguities. For instance, if both the `employee` and `manager` types have a method with the same name, it can be difficult to determine which method is being called. \n\n         ```go \n\n         func (e employee) greet() { \n\n            fmt.Println(\"Hello\", e.name) \n\n         } \n\n         func (m manager) greet() { \n\n            fmt.Println(\"Hello\", m.name, \"from\", m.department) \n\n         } \n\n         ``` \n\n         In such cases, the Go language's ambiguity resolution rules come into play. These rules help determine which method is being called, resolving the ambiguity by promoting the method from the innermost type if there's a conflict."
+    }
+  },
+  {
     "id": "1784369730",
     "slug": "go-compiler-optimizations-for-stack-allocation",
     "date": "2026-07-18",
