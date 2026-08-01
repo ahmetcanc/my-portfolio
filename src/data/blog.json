@@ -1,5 +1,22 @@
 [
   {
+    "id": "1785580635",
+    "slug": "go-advanced-escape-analysis-techniques",
+    "date": "2026-08-01",
+    "title": {
+      "tr": "Golang'da İleri Düzey Kaçış Analizi Teknikleri",
+      "en": "Advanced Escape Analysis Techniques in Golang"
+    },
+    "excerpt": {
+      "tr": "Golang'da kaçış analizi, bellek yönetimi için önemlidir. Bu yazıdaescape analysis teknikleri ve bunların avantajları anlatılmaktadır.",
+      "en": "Escape analysis is crucial in Golang for memory management. This article explores advanced escape analysis techniques and their benefits."
+    },
+    "content": {
+      "tr": "# Golang'da İleri Düzey Kaçış Analizi Teknikleri\nGolang'da kaçış analizi, bellek yönetimini optimize etmek için kullanılan bir tekniktir. Bu yazıda, kaçış analizi teknikleri ve bunların avantajları anlatılmaktadır.\n\n## Kaçış Analizi Nedir?\nKaçış analizi, bir değişkenin veya bir nesnenin fonksiyon dışında erişilebilir olup olmadığını belirlemek için kullanılan bir tekniktir.\n\n## Kaçış Analizi Teknikleri\nGolang'da kaçış analizi için aşağıdaki teknikler kullanılır:\n- **Escape Analysis**: Kaçış analizi, bir değişkenin veya bir nesnenin fonksiyon dışında erişilebilir olup olmadığını belirlemek için kullanılır.\n- **Stack Allocation**: Yığın tahsisi, fonksiyon içinde oluşan değişkenleri ve nesneleri belleğe tanımlamak için kullanılır.\n\n### Escape Analysis\nKaçış analizi, bir değişkenin veya bir nesnenin fonksiyon dışında erişilebilir olup olmadığını belirlemek için kullanılır. Kaçış analizi ile bellek yönetimi optimize edilebilir.\n```go\nfunc example() *LError {\n   err := LError{}\n   return \u0026err\n}\n```\nBu örneklette, `err` değişkeni fonksiyon dışında erişilebilir olduğu için kaçış analizi tarafındanescape edilir.\n\n### Stack Allocation\nYığın tahsisi, fonksiyon içinde oluşan değişkenleri ve nesneleri belleğe tanımlamak için kullanılır. Yığın tahsisi ile bellek yönetimi optimize edilebilir.\n```go\nfunc example() {\n   err := LError{}\n}\n```\nBu örneklette, `err` değişkeni fonksiyon içinde oluştuğu için yığına tahsis edilir ve bellek yönetimini optimize eder.\n\n## Sonuç\nGolang'da kaçış analizi teknikleri, bellek yönetimini optimize etmek için önemlidir. Bu yazıda, kaçış analizi teknikleri ve bunların avantajları anlatılmıştır.",
+      "en": "# Advanced Escape Analysis Techniques in Golang\nEscape analysis is crucial in Golang for memory management. This article explores advanced escape analysis techniques and their benefits.\n\n## What is Escape Analysis?\nEscape analysis is a technique used to determine whether a variable or object is accessible outside a function.\n\n## Escape Analysis Techniques\nThe following techniques are used for escape analysis in Golang:\n- **Escape Analysis**: Escape analysis is used to determine whether a variable or object is accessible outside a function.\n- **Stack Allocation**: Stack allocation is used to allocate memory for variables and objects that are created within a function.\n\n### Escape Analysis\nEscape analysis is used to determine whether a variable or object is accessible outside a function. Escape analysis can optimize memory management.\n```go\nfunc example() *LError {\n   err := LError{}\n   return \u0026err\n}\n```\nIn this example, the `err` variable is accessible outside the function, so it is escaped by the escape analysis.\n\n### Stack Allocation\nStack allocation is used to allocate memory for variables and objects that are created within a function. Stack allocation can optimize memory management.\n```go\nfunc example() {\n   err := LError{}\n}\n```\nIn this example, the `err` variable is created within the function, so it is allocated on the stack and optimizes memory management.\n\n## Conclusion\nEscape analysis techniques in Golang are important for optimizing memory management. This article has explored advanced escape analysis techniques and their benefits."
+    }
+  },
+  {
     "id": "1784975020",
     "slug": "go-type-embedding-and-ambiguity-resolution",
     "date": "2026-07-25",
