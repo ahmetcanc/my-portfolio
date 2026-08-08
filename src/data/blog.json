@@ -1,5 +1,22 @@
 [
   {
+    "id": "1786181548",
+    "slug": "golang-advanced-allocations-and-garbage-collection",
+    "date": "2026-08-08",
+    "title": {
+      "tr": "Golang İleri Bellek Ayırmaları ve Çöp Toplama Teknikleri",
+      "en": "Advanced Memory Allocations and Garbage Collection in Golang"
+    },
+    "excerpt": {
+      "tr": "Bu makalede, Golang'da gelişmiş bellek ayırmaları ve çöp toplama tekniklerini inceleyeceğiz. Bellek yönetimi, yazılımların performansı ve güvenilirliğini doğrudan etkiler. Uygulamalarımızda optimizasyon için bu konuları derinlemesine ele alacağız.",
+      "en": "This article explores advanced memory allocations and garbage collection techniques in Golang. Memory management directly affects the performance and reliability of software. We will delve into these topics for optimization in our applications."
+    },
+    "content": {
+      "tr": "### Golang İleri Bellek Ayırmaları ve Çöp Toplama Teknikleri\nGolang'da bellek ayırmaları, programların performansını ve güvenilirliğini önemli ölçüde etkiler. Bu makalede, Golang'da gelişmiş bellek ayırmaları ve çöp toplama tekniklerini inceleyeceğiz.\n#### Bellek Ayırmaları\nGolang'da bellek ayırmaları, iki ana şekilde yapılır: yığın (stack) ve yığın dışından (heap) ayırmalar.\n```go\n// Yığın ayırmaları örneği\nfunc main() {\n   x := 5\n   fmt.Println(x)\n}\n```\nYığın ayırmaları, fonksiyonların yerel değişkenleri için kullanılır ve fonksiyon çıkışı ile otomatik olarak temizlenir.\n#### Çöp Toplama\nÇöp toplama, artık kullanılmayan bellek ayırmalarının geri kazanılması için kullanılır. Golang, üç renkli bir çöp toplama mekanizması sağlar: beyaz, gri ve siyah.\n```go\n// Çöp toplama mekanizması\nfunc main() {\n   x := \u0026struct{}{}\n   // x artık kullanılmayan bir bellek ayırması\n   x = nil\n   // Çöp toplama tetiklenir\n   runtime.GC()\n}\n```\nBu mekanizma, kullanılan belleği izler ve artık kullanılmayan bellek ayırmalarını geri kazanır.\n### Sonuç\nBu makalede, Golang'da gelişmiş bellek ayırmaları ve çöp toplama tekniklerini inceledik. Uygulamalarımızda bu teknikleri kullanarak optimizasyon sağlayabilir ve programlarımızın performansını artırabiliriz.",
+      "en": "### Advanced Memory Allocations and Garbage Collection in Golang\nMemory allocations in Golang significantly impact the performance and reliability of programs. In this article, we will explore advanced memory allocations and garbage collection techniques in Golang.\n#### Memory Allocations\nIn Golang, memory allocations are primarily done in two ways: stack allocations and heap allocations.\n```go\n// Stack allocation example\nfunc main() {\n   x := 5\n   fmt.Println(x)\n}\n```\nStack allocations are used for function-local variables and are automatically cleaned up when the function returns.\n#### Garbage Collection\nGarbage collection is used to reclaim memory allocations that are no longer in use. Golang provides a tri-color garbage collection mechanism: white, gray, and black.\n```go\n// Garbage collection mechanism\nfunc main() {\n   x := \u0026struct{}{}\n   // x is now an unused memory allocation\n   x = nil\n   // Garbage collection is triggered\n   runtime.GC()\n}\n```\nThis mechanism tracks used memory and reclaims unused memory allocations.\n### Conclusion\nIn this article, we explored advanced memory allocations and garbage collection techniques in Golang. By applying these techniques in our applications, we can optimize and improve the performance of our programs."
+    }
+  },
+  {
     "id": "1785580635",
     "slug": "go-advanced-escape-analysis-techniques",
     "date": "2026-08-01",
