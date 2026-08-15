@@ -1,5 +1,22 @@
 [
   {
+    "id": "1786785651",
+    "slug": "golang-advanced-context-cancellation-techniques",
+    "date": "2026-08-15",
+    "title": {
+      "tr": "Golang İleri Düzey Bağlam İptali Teknikleri",
+      "en": "Advanced Context Cancellation Techniques in Golang"
+    },
+    "excerpt": {
+      "tr": "Bu makalede, Golang'da bağlam iptali tekniklerine derinlemesine bakacağız. Bağlam iptalinin önemini, çeşitli tekniklerin nasıl kullanılacağını ve bu tekniklerin real-world uygulamalarını inceleyeceğiz.",
+      "en": "This article delves into advanced context cancellation techniques in Golang. We will explore the importance of context cancellation, how to use various techniques, and examine real-world applications of these techniques."
+    },
+    "content": {
+      "tr": "# Golang İleri Düzey Bağlam İptali Teknikleri\nGolang programlama dilinde bağlam iptali sangat önemlidir. Bağlam iptali, bir işin tamamlanmasını iptal etmek için kullanılan bir tekniktir. Bu makalede, bağlam iptalinin önemini, çeşitli tekniklerin nasıl kullanılacağını ve bu tekniklerin real-world uygulamalarını inceleyeceğiz.\n\n## Bağlam İptali\nGolang'da bağlam iptali için `context` paketi kullanılır. Bu paket, bağlam iptali için `CancelFunc` türünü sağlar.\n```go\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tctx, cancel := context.WithCancel(context.Background())\n\tdefer cancel()\n\tgo func() {\n\t\ttime.Sleep(5 * time.Second)\n\t\tcancel()\n\t}()\n\tselect {\n\tcase \u003c-ctx.Done():\n\t\tfmt.Println(\"Bağlam iptal edildi\")\n\t}\n}\n```\nBu örnekte, `context.WithCancel` fonksiyonu kullanılarak bir bağlam oluşturulmuştur. Daha sonra, bu bağlam iptal edilmiştir.\n\n## Zaman Aşımı\nGolang'da zaman aşımı için `context` paketinin `WithTimeout` fonksiyonu kullanılır.\n```go\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)\n\tdefer cancel()\n\tselect {\n\tcase \u003c-ctx.Done():\n\t\tfmt.Println(\"Zaman aşımı oluştu\")\n\t}\n}\n```\nBu örnekte, `context.WithTimeout` fonksiyonu kullanılarak bir zaman aşımı oluşturulmuştur.\n\n## Sonuç\nGolang'da bağlam iptali teknikleri sangat önemlidir. Bu teknikleri kullanarak, programlarımızı daha güçlü ve güvenilir hale getirebiliriz.",
+      "en": "# Advanced Context Cancellation Techniques in Golang\nIn this article, we will explore advanced context cancellation techniques in Golang. Context cancellation is a technique used to cancel the completion of a task. We will discuss the importance of context cancellation, how to use various techniques, and examine real-world applications of these techniques.\n\n## Context Cancellation\nIn Golang, context cancellation is achieved using the `context` package. This package provides the `CancelFunc` type for context cancellation.\n```go\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tctx, cancel := context.WithCancel(context.Background())\n\tdefer cancel()\n\tgo func() {\n\t\ttime.Sleep(5 * time.Second)\n\t\tcancel()\n\t}()\n\tselect {\n\tcase \u003c-ctx.Done():\n\t\tfmt.Println(\"Context canceled\")\n\t}\n}\n```\nIn this example, a context is created using the `context.WithCancel` function. Then, this context is canceled.\n\n## Timeout\nIn Golang, timeout is achieved using the `context` package's `WithTimeout` function.\n```go\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\tctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)\n\tdefer cancel()\n\tselect {\n\tcase \u003c-ctx.Done():\n\t\tfmt.Println(\"Timeout occurred\")\n\t}\n}\n```\nIn this example, a timeout is created using the `context.WithTimeout` function.\n\n## Conclusion\nContext cancellation techniques are crucial in Golang. By using these techniques, we can make our programs more robust and reliable."
+    }
+  },
+  {
     "id": "1786181548",
     "slug": "golang-advanced-allocations-and-garbage-collection",
     "date": "2026-08-08",
